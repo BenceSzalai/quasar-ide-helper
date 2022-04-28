@@ -21,7 +21,9 @@ module.exports = function (api, ctx) {
   const appDir = api.appDir
   const apiPath = `${appDir}/node_modules/quasar/dist/api`
 
-  setupFakeWebPackConfig(appDir, api)
+  if (api.hasWebpack) {
+    setupFakeWebPackConfig(appDir, api)
+  }
   generateIfNeeded(api, appDir)
 
   api.registerCommand('generate', () => generateAll(api))
